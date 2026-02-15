@@ -1,0 +1,61 @@
+{
+  "kind": "implementation_plan",
+  "version": "1.0",
+  "title": "Simplify RSVP UI and admin dashboard by removing attendance status and guest count",
+  "requirements": [
+    {
+      "id": "REQ-7",
+      "summary": "Simplify the public RSVP form to collect only required guest name and required invite code (plus keep optional message if present), removing attendance status and guest count inputs while preserving submit/thank-you behavior.",
+      "acceptanceCriteria": [
+        "RSVP form UI no longer renders the 'Will you be attending?' radio options.",
+        "RSVP form UI no longer renders the 'Number of Guests' field.",
+        "Required validation still applies to 'Your Name' and 'Invite Code' only, and the submit button remains disabled until both are provided.",
+        "After a successful submission, the existing success/thank-you state still appears and the form resets."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/components/RSVPForm.tsx",
+          "operation": "modify",
+          "description": "Remove attendance status and guest count state/fields from the form UI; keep required Name + Invite Code fields and keep the existing optional Message (note) field if present; update submit handler to send only the simplified payload expected by the updated mutation; ensure submit button disabling depends only on name+inviteCode; ensure onSuccess still shows the existing thank-you UI and resets form state. Uses shadcn-ui form primitives already in this file (Card, Input, Label, Textarea, Button) — verify the component's usage instructions before implementing."
+        }
+      ]
+    },
+    {
+      "id": "REQ-8",
+      "summary": "Update the RSVP submission React Query mutation and related types/usages to support the simplified RSVP submission model (no attendance status, no guest count) and keep the app compiling and submitting successfully.",
+      "acceptanceCriteria": [
+        "The RSVP submit mutation no longer requires an 'attending' value from the form UI.",
+        "The app builds without TypeScript errors related to RSVP submission arguments.",
+        "Submitting an RSVP from the public page still calls the backend successfully and shows the success state."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/hooks/useQueries.ts",
+          "operation": "modify",
+          "description": "Update useSubmitRSVP mutation variables/type so callers provide only { name, inviteCode } (and ignore guest count/status); adapt the call into the backend submit function in a backward/forward-compatible way (e.g., provide a default attending value when needed) so RSVP submission continues to work end-to-end during the transition. Verify the component's usage instructions before implementing (React Query patterns used by selected components)."
+        },
+        {
+          "path": "frontend/src/components/RSVPForm.tsx",
+          "operation": "modify",
+          "description": "Update the useSubmitRSVP.mutate call site to match the new mutation argument shape (no attending/guestCount), while keeping existing error display and success reset behavior. Uses shadcn-ui components already present — verify the component's usage instructions before implementing."
+        }
+      ]
+    },
+    {
+      "id": "REQ-10",
+      "summary": "Remove attendance-based statistics and per-RSVP attendance status display from the admin RSVP dashboard while keeping the RSVP list readable and useful.",
+      "acceptanceCriteria": [
+        "Admin dashboard no longer shows 'Attending' and 'Not Attending' statistic cards/counters.",
+        "The RSVP responses table no longer includes a 'Status' column or 'Attending/Not Attending' badges.",
+        "The admin RSVP list still shows each RSVP's guest name, invite code, and submission date, and remains readable/sortable as before where applicable."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/components/AdminRSVPList.tsx",
+          "operation": "modify",
+          "description": "Remove attendance-based stats cards/counters and related icon/badge usage; update the RSVP table to drop the Status column and badges, leaving Name, Invite Code, and Date columns; keep existing sorting by timestamp and general readability. Uses shadcn-ui components already present (Card, Table, Button, etc.) — verify the component's usage instructions before implementing."
+        }
+      ]
+    }
+  ]
+}

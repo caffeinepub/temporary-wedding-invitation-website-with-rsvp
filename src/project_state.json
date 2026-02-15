@@ -1,0 +1,108 @@
+{
+  "schemaVersion": "1.0.0",
+  "projectStateVersion": 5,
+  "summary": "Build a temporary wedding invitation website for sharing wedding card/invitation details.",
+  "architectural_notes": [],
+  "known_issues": [],
+  "isFixRequest": false,
+  "existing_features": [
+    {
+      "id": "feature-create-a-single-page-wedding-invitation-website-that-can-be-shared-via-a-link-and-displays-essential-invitation-details-couple-names-wedding-date-time-venue-name-address-a-short-welcome-message-and-a-simple-schedule-section-e-g-ceremony-reception",
+      "title": "Create a single-page wedding invitation website that can be shared via a link and displays essential invitation details: couple names, wedding date/time, venue name/address, a short welcome message, and a simple schedule section (e.g., Ceremony/Reception).",
+      "reqIds": [
+        "REQ-1"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-an-rsvp-form-that-allows-a-guest-to-submit-their-name-attendance-status-yes-no-number-of-guests-optional-and-a-short-note-optional-the-form-must-validate-required-fields-and-show-a-success-failure-state-after-submission",
+      "title": "Add an RSVP form that allows a guest to submit their name, attendance status (Yes/No), number of guests (optional), and a short note (optional). The form must validate required fields and show a success/failure state after submission.",
+      "reqIds": [
+        "REQ-2"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-provide-a-simple-admin-only-view-to-see-all-rsvp-submissions-protect-access-using-internet-identity-sign-in-and-allow-viewing-read-only-of-the-rsvp-list",
+      "title": "Provide a simple admin-only view to see all RSVP submissions. Protect access using Internet Identity sign-in and allow viewing (read-only) of the RSVP list.",
+      "reqIds": [
+        "REQ-4"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-apply-a-creative-coherent-wedding-themed-visual-design-colors-typography-spacing-section-dividers-consistently-across-the-site-avoiding-a-default-unstyled-template-look",
+      "title": "Apply a creative, coherent wedding-themed visual design (colors, typography, spacing, section dividers) consistently across the site, avoiding a default/unstyled template look.",
+      "reqIds": [
+        "REQ-5"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-generated-static-decorative-assets-hero-background-and-small-ornaments-to-enhance-the-invitation-look-and-render-them-from-frontend-static-assets-not-via-backend",
+      "title": "Add generated static decorative assets (hero/background and small ornaments) to enhance the invitation look, and render them from frontend static assets (not via backend).",
+      "reqIds": [
+        "REQ-6"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-update-the-public-rsvp-form-to-no-longer-ask-guests-whether-they-are-attending-or-how-many-guests-are-coming-the-form-should-only-collect-required-guest-name-and-required-invite-code-and-keep-the-existing-optional-message-field-if-present-and-it-should-submit-successfully-with-the-simplified-payload",
+      "title": "Update the public RSVP form to no longer ask guests whether they are attending or how many guests are coming; the form should only collect required guest name and required invite code (and keep the existing optional message field if present), and it should submit successfully with the simplified payload.",
+      "reqIds": [
+        "REQ-7"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-adjust-the-rsvp-submission-client-logic-to-match-the-simplified-rsvp-model-no-attendance-status-and-no-guest-count-by-updating-the-react-query-mutation-used-for-rsvp-submission-and-any-affected-types-usages-so-the-frontend-compiles-and-rsvp-submission-continues-to-work-end-to-end",
+      "title": "Adjust the RSVP submission client logic to match the simplified RSVP model (no attendance status and no guest count) by updating the React Query mutation used for RSVP submission and any affected types/usages so the frontend compiles and RSVP submission continues to work end-to-end.",
+      "reqIds": [
+        "REQ-8"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-update-the-admin-rsvp-dashboard-so-it-no-longer-displays-attendance-based-statistics-or-an-attendance-status-column-labels-for-each-rsvp-entry-since-guests-are-not-asked-attending-not-attending",
+      "title": "Update the admin RSVP dashboard so it no longer displays attendance-based statistics or an attendance status column/labels for each RSVP entry (since guests are not asked attending/not attending).",
+      "reqIds": [
+        "REQ-10"
+      ],
+      "version": 1
+    }
+  ],
+  "new_feature_requests": [
+    {
+      "id": "AR-1",
+      "summary": "Create a temporary wedding invitation website (wedding card/invitation page)",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-4",
+      "summary": "Implement backend endpoints in the single Motoko actor to store and retrieve RSVP submissions, including a method to list all RSVPs for viewing.",
+      "reqIds": [
+        "REQ-3"
+      ],
+      "status": "pending"
+    },
+    {
+      "id": "AR-5",
+      "summary": "Simplify RSVP form by removing attendance status (Yes/No) and number-of-guests fields; do not ask if the guest is attending or request attendee count.",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-8",
+      "summary": "Update the backend RSVP submission method so it does not require an attendance status parameter from the client; it must still validate the invite code as it does today and store an RSVP record in a way compatible with the existing admin RSVP listing.",
+      "reqIds": [
+        "REQ-9"
+      ],
+      "status": "pending"
+    }
+  ],
+  "gameProjectType": "none",
+  "projectName": "Temporary wedding invitation website with RSVP",
+  "clarification_mode": "instant",
+  "clarification_rounds": 0
+}

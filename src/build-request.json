@@ -1,0 +1,103 @@
+{
+  "kind": "build_request",
+  "title": "Simplify RSVP: remove attendance status and guest count questions",
+  "priority": "normal",
+  "requirements": [
+    {
+      "id": "REQ-7",
+      "text": "Update the public RSVP form to no longer ask guests whether they are attending or how many guests are coming; the form should only collect required guest name and required invite code (and keep the existing optional message field if present), and it should submit successfully with the simplified payload.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-1"
+        ],
+        "quotes": [
+          "I don't need any count of people attending i dont want them to ask are you attending or not"
+        ]
+      },
+      "acceptanceCriteria": [
+        "RSVP form UI no longer renders the 'Will you be attending?' radio options.",
+        "RSVP form UI no longer renders the 'Number of Guests' field.",
+        "Required validation still applies to 'Your Name' and 'Invite Code' only, and the submit button remains disabled until both are provided.",
+        "After a successful submission, the existing success/thank-you state still appears and the form resets."
+      ]
+    },
+    {
+      "id": "REQ-8",
+      "text": "Adjust the RSVP submission client logic to match the simplified RSVP model (no attendance status and no guest count) by updating the React Query mutation used for RSVP submission and any affected types/usages so the frontend compiles and RSVP submission continues to work end-to-end.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-1"
+        ],
+        "quotes": [
+          "i dont want them to ask are you attending or not"
+        ]
+      },
+      "acceptanceCriteria": [
+        "The RSVP submit mutation no longer requires an 'attending' value from the form UI.",
+        "The app builds without TypeScript errors related to RSVP submission arguments.",
+        "Submitting an RSVP from the public page still calls the backend successfully and shows the success state."
+      ]
+    },
+    {
+      "id": "REQ-9",
+      "text": "Update the backend RSVP submission method so it does not require an attendance status parameter from the client; it must still validate the invite code as it does today and store an RSVP record in a way compatible with the existing admin RSVP listing.",
+      "target": "backend",
+      "source": {
+        "messageIds": [
+          "msg-1"
+        ],
+        "quotes": [
+          "i dont want them to ask are you attending or not"
+        ]
+      },
+      "acceptanceCriteria": [
+        "The backend exposes an RSVP submission method that accepts (at minimum) guest name and invite code, and does not require an attendance-status argument from the client.",
+        "Submitting an RSVP with a valid invite code succeeds; submitting with an invalid/used code fails as before (same validation behavior as current invite-code system).",
+        "Admin retrieval of RSVPs continues to work without requiring any data migration."
+      ]
+    },
+    {
+      "id": "REQ-10",
+      "text": "Update the admin RSVP dashboard so it no longer displays attendance-based statistics or an attendance status column/labels for each RSVP entry (since guests are not asked attending/not attending).",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-1"
+        ],
+        "quotes": [
+          "I don't need any count of people attending i dont want them to ask are you attending or not"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Admin dashboard no longer shows 'Attending' and 'Not Attending' statistic cards/counters.",
+        "The RSVP responses table no longer includes a 'Status' column or 'Attending/Not Attending' badges.",
+        "The admin RSVP list still shows each RSVP's guest name, invite code, and submission date, and remains readable/sortable as before where applicable."
+      ]
+    }
+  ],
+  "constraints": [
+    "Backend must remain a single Motoko actor in backend/main.mo (no additional backend services).",
+    "Do not edit frontend immutable paths: frontend/src/hooks/useInternetIdentity.ts, frontend/src/hooks/useInternetIdentity.tsx, frontend/src/hooks/useActor.ts, frontend/src/main.tsx, frontend/src/components/ui."
+  ],
+  "nonGoals": [
+    "Do not add new RSVP questions or fields beyond simplifying/removing attendance status and guest count.",
+    "Do not change Internet Identity authentication behavior for the admin view.",
+    "Do not change invite-code generation/sharing behavior beyond what is necessary for the simplified RSVP submission API."
+  ],
+  "imageRequirements": {
+    "required": [],
+    "edits": []
+  },
+  "userProfileUpdate": {
+    "goalsToAdd": [],
+    "goalsToRemove": [],
+    "preferencesToAdd": [],
+    "preferencesToRemove": [],
+    "miscToAdd": [],
+    "miscToRemove": [],
+    "fieldsToSet": {},
+    "fieldsToDelete": []
+  }
+}

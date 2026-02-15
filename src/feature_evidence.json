@@ -1,0 +1,66 @@
+{
+  "kind": "feature_evidence_report",
+  "features": [
+    {
+      "featureId": "feature-update-the-public-rsvp-form-to-no-longer-ask-guests-whether-they-are-attending-or-how-many-guests-are-coming-the-form-should-only-collect-required-guest-name-and-required-invite-code-and-keep-the-existing-optional-message-field-if-present-and-it-should-submit-successfully-with-the-simplified-payload",
+      "featureTitle": "Update the public RSVP form to no longer ask guests whether they are attending or how many guests are coming; the form should only collect required guest name and required invite code (and keep the existing optional message field if present), and it should submit successfully with the simplified payload.",
+      "files": [
+        "frontend/src/components/RSVPForm.tsx"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "invite-links@3.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-7"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-adjust-the-rsvp-submission-client-logic-to-match-the-simplified-rsvp-model-no-attendance-status-and-no-guest-count-by-updating-the-react-query-mutation-used-for-rsvp-submission-and-any-affected-types-usages-so-the-frontend-compiles-and-rsvp-submission-continues-to-work-end-to-end",
+      "featureTitle": "Adjust the RSVP submission client logic to match the simplified RSVP model (no attendance status and no guest count) by updating the React Query mutation used for RSVP submission and any affected types/usages so the frontend compiles and RSVP submission continues to work end-to-end.",
+      "files": [
+        "frontend/src/components/RSVPForm.tsx",
+        "frontend/src/hooks/useQueries.ts"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "invite-links@3.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-8"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-update-the-admin-rsvp-dashboard-so-it-no-longer-displays-attendance-based-statistics-or-an-attendance-status-column-labels-for-each-rsvp-entry-since-guests-are-not-asked-attending-not-attending",
+      "featureTitle": "Update the admin RSVP dashboard so it no longer displays attendance-based statistics or an attendance status column/labels for each RSVP entry (since guests are not asked attending/not attending).",
+      "files": [
+        "frontend/src/components/AdminRSVPList.tsx"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "invite-links@3.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-10"
+      ],
+      "confidence": "high"
+    }
+  ]
+}

@@ -1,0 +1,22 @@
+{
+  "backend/main.mo": "Implements access-controlled user profiles, invite-code generation, and RSVP submission with admin-restricted queries for RSVPs and invite codes.",
+  "feature_evidence.json": "Defines feature evidence records linking feature changes to affected frontend files, components, and test IDs.",
+  "frontend-file-summaries.txt": "Contains prewritten summaries of all major frontend source files for reference or documentation.",
+  "frontend/index.css": "Defines global Tailwind styles and OKLCH-based color variables for light and dark themes.",
+  "frontend/index.html": "HTML entry point that mounts the React app and sets basic metadata and title.",
+  "frontend/src/App.tsx": "Chooses between admin dashboard and public invitation UI based on authentication and admin status, composing main site layout.",
+  "frontend/src/components/AdminRSVPList.tsx": "Admin dashboard component showing RSVP totals, unused codes, invite-code generation, and a simplified RSVP table.",
+  "frontend/src/components/InvitationDetails.tsx": "Displays detailed wedding information including welcome text, date/time, venue, and event schedule.",
+  "frontend/src/components/InvitationHero.tsx": "Hero section with background image, emblem, and couple’s names styled for the invitation landing view.",
+  "frontend/src/components/LoginButton.tsx": "Login/logout button using Internet Identity, showing status and clearing queries on logout.",
+  "frontend/src/components/RSVPForm.tsx": "RSVP submission form that auto-fills invite code, submits via mutation, and shows a success message.",
+  "frontend/src/components/SectionOrnaments.tsx": "Simple decorative image component rendered at the top or bottom of a section.",
+  "frontend/src/hooks/useActor.ts": "Creates and manages an authenticated or anonymous backend actor and refreshes dependent queries on change.",
+  "frontend/src/hooks/useInternetIdentity.ts": "Provides Internet Identity auth context including login, logout, identity loading, and status handling.",
+  "frontend/src/hooks/useQueries.ts": "React Query hooks for admin checks, RSVP submission, invite code retrieval, and code generation.",
+  "frontend/src/index.css": "Tailwind setup with custom theme variables for light/dark modes and imported fonts.",
+  "frontend/src/main.tsx": "Application entry that mounts React with QueryClient and Internet Identity provider.",
+  "frontend/src/utils/urlParams.ts": "Utility helpers for reading, persisting, and clearing URL parameters including hash-based routing support.",
+  "frontend/tailwind.config.js": "Configures Tailwind with dark mode, custom fonts, OKLCH color system, extended animations, shadows, and includes typography, container-queries, and animate plugins.",
+  "project_state.json": "Stores the project’s schema version, state metadata, and a list of implemented features for the wedding invitation site, including RSVP and admin features."
+}

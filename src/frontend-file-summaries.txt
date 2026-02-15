@@ -1,0 +1,13 @@
+{
+  "frontend/src/App.tsx": "Main application component that conditionally renders either the admin dashboard (for authenticated admins) or the public wedding invitation with RSVP form, includes header with login button and footer with attribution.",
+  "frontend/src/components/InvitationHero.tsx": "Hero section component displaying the wedding couple's names, emblem, and welcome message over a background image with decorative ornaments.",
+  "frontend/src/components/SectionOrnaments.tsx": "Reusable decorative component that displays floral corner ornaments at the top or bottom of sections.",
+  "frontend/src/components/InvitationDetails.tsx": "Component displaying wedding details including date/time, venue address, and event schedule in elegant card layouts.",
+  "frontend/src/components/RSVPForm.tsx": "Simplified RSVP form component with only required name and invite code fields plus optional message field; removed attendance status radio buttons and guest count input.",
+  "frontend/src/components/LoginButton.tsx": "Internet Identity login/logout button component that clears query cache on logout and handles authentication state.",
+  "frontend/src/components/AdminRSVPList.tsx": "Admin dashboard displaying total RSVPs and unused codes statistics, invite code management, and simplified RSVP table showing only name, invite code, and submission date.",
+  "frontend/src/hooks/useQueries.ts": "React Query hooks for backend operations; useSubmitRSVP mutation updated to accept only name and inviteCode parameters while passing default attending value to backend.",
+  "frontend/src/index.css": "Global styles with OKLCH-based rose and gold wedding theme color system, custom font imports (Playfair Display serif and Inter sans), and Tailwind base configuration.",
+  "frontend/tailwind.config.js": "Tailwind configuration extended with custom rose color palette, Playfair Display and Inter fonts, elegant shadows, and wedding-themed design tokens.",
+  "frontend/index.html": "HTML entry point with updated title and meta description for the wedding invitation website."
+}

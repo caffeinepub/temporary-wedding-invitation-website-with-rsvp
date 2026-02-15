@@ -1,0 +1,43 @@
+{
+  "kind": "spec_vs_diff_report",
+  "version": "1.0",
+  "generatedAt": "2026-02-15T06:37:52.035Z",
+  "summary": "Frontend RSVP form and client mutation were partially simplified to remove attendance/guest-count inputs, and admin dashboard statistics were adjusted. However, the backend RSVP submission API still requires an `attending` parameter, and there isn’t enough evidence that the optional message field is still rendered/submitted or that the submit button is disabled until required fields are filled.",
+  "missing_requirements": [
+    {
+      "id": "REQ-9",
+      "requirement": "Update the backend RSVP submission method so it does not require an attendance status parameter from the client; it must still validate the invite code as it does today and store an RSVP record compatible with the existing admin RSVP listing.",
+      "reason": "`submitRSVP` in the backend still requires an `attending : Bool` argument, so the backend API is not simplified as requested.",
+      "evidence": [
+        "backend/main.mo (submitRSVP(name : Text, attending : Bool, inviteCode : Text))",
+        "frontend/src/hooks/useQueries.ts (calls actor.submitRSVP(name, true, inviteCode) because backend still requires attending)"
+      ]
+    },
+    {
+      "id": "REQ-7",
+      "requirement": "Public RSVP form should only collect required guest name and required invite code (and keep the existing optional message field if present), with required validation and submit button disabled until both required fields are provided.",
+      "reason": "The diff shows name and invite code inputs and basic required checks, but the file is truncated before the rest of the form. There is no visible evidence that (a) an optional message/textarea is still rendered, and (b) the submit button is disabled until both required fields are filled.",
+      "evidence": [
+        "frontend/src/components/RSVPForm.tsx (truncated after Invite Code section; shows `note` state but does not show textarea rendering or button disabled state)"
+      ]
+    },
+    {
+      "id": "REQ-8",
+      "requirement": "Adjust the RSVP submission client logic to match the simplified RSVP model (no attendance status and no guest count) by updating the React Query mutation used for RSVP submission and any affected types/usages so the frontend compiles and RSVP submission continues to work end-to-end.",
+      "reason": "Although the mutation input no longer requires `attending`, it still hard-codes and sends `true` for `attending` to the backend due to the backend API still requiring it, which is not fully aligned with a simplified RSVP model end-to-end.",
+      "evidence": [
+        "frontend/src/hooks/useQueries.ts (mutationFn calls actor.submitRSVP(name, true, inviteCode) with comment 'Backend still requires attending parameter')"
+      ]
+    }
+  ],
+  "hallucinated_features": [],
+  "confidence": 0.74,
+  "changed_files": [
+    "backend/main.mo",
+    "frontend-file-summaries.txt",
+    "frontend/src/components/AdminRSVPList.tsx",
+    "frontend/src/components/RSVPForm.tsx",
+    "frontend/src/hooks/useQueries.ts",
+    "project_state.json"
+  ]
+}
